@@ -153,6 +153,53 @@ const expectedRateOfReturnMarks = [
   },
 ];
 
+const startSipDelayMarks = [
+  {
+    value: 1,
+    label: '1',
+  },
+  {
+    value: 13,
+    label: '13',
+  },
+  {
+    value: 25,
+    label: '25',
+  },
+  {
+    value: 37,
+    label: '37',
+  },
+  {
+    value: 49,
+    label: '49',
+  },
+  {
+    value: 61,
+    label: '61',
+  },
+  {
+    value: 72,
+    label: '72',
+  },
+  {
+    value: 84,
+    label: '84',
+  },
+  {
+    value: 96,
+    label: '96',
+  },
+  {
+    value: 108,
+    label: '108',
+  },
+  {
+    value: 120,
+    label: '120',
+  },
+];
+
 function monthlyInvestmentText(value) {
   return `Rs. ${value}`;
 }
@@ -165,10 +212,15 @@ function expectedRateOfReturnText(value) {
   return `${value} %`;
 }
 
+function startSipDelayText(value) {
+  return  `${value} months`;
+}
+
  export default function SipDelayCal() {
   const [monthlyInvestmentValue, setMonthlyInvestment] = React.useState(100000);
   const [investmentPeriodValue, setInvestmentPeriod ] = React.useState(5);
   const [expectedRateOfReturnValue, setExpectedRateOfReturn] = React.useState(12);
+  const [startSipDelayValue, setStartSipDelay] = React.useState(6);
 
   const handleMonthlyInvestmentSliderChange = (event, newMonthlyInvestmentValue) => {
     setMonthlyInvestment(newMonthlyInvestmentValue);
@@ -182,6 +234,10 @@ function expectedRateOfReturnText(value) {
     setExpectedRateOfReturn(newExpectedRateOfReturnValue);
   };
 
+  const handleStartSipDelaySliderChange = (event, newStartSipDelayValue) => {
+    setStartSipDelay(newStartSipDelayValue);
+  };
+
   const handleMonthlyInvestmentChange = (event) => {
     setMonthlyInvestment(event.target.value === '' ? '' : Number(event.target.value));
   };
@@ -192,6 +248,10 @@ function expectedRateOfReturnText(value) {
 
   const handleExpectedRateOfReturnChange = (event) => {
     setExpectedRateOfReturn(event.target.value === '' ? '' : Number(event.target.value));
+  };
+
+  const handleStartSipDelayChange = (event) => {
+    setStartSipDelay(event.target.value === '' ? '' : Number(event.target.value));
   };
 
   const handleMonthlyInvestmentBlur = () => {
@@ -217,6 +277,14 @@ function expectedRateOfReturnText(value) {
       setExpectedRateOfReturn(30);
     }
   };
+  const handleStartSipDelayBlur = () => {
+    if (startSipDelayValue < 0) {
+      setStartSipDelay(1);
+    } else if (startSipDelayValue > 120) {
+      setStartSipDelay(120);
+    }
+  };
+
 
   const textStyle = {
     fontSize: "1.5rem",
@@ -379,6 +447,45 @@ function expectedRateOfReturnText(value) {
             </Grid>
         </Grid>
       </Box>
+
+      <Box>
+        <br></br>
+        <Typography id="input-slider" gutterBottom>
+            Delay in Starting SIP (in months)
+        </Typography>
+        <br></br>
+        <Grid container spacing={2} alignItems="center">
+            <Grid item xs>
+            <Slider
+                value={typeof startSipDelayValue === 'number' ? startSipDelayValue : 0}
+                onChange={handleStartSipDelaySliderChange}
+                aria-label="Delay in Starting SIP"
+                // marks={true}
+                marks={startSipDelayMarks}
+                getAriaValueText={startSipDelayText}
+                // step={0.1}
+                valueLabelDisplay="auto"
+                min={1}
+                max={120}
+            />
+            </Grid>
+            <Grid item>
+            <Input
+                value={startSipDelayValue}
+                onChange={handleStartSipDelayChange}
+                onBlur={handleStartSipDelayBlur}
+                inputProps={{
+                // step: 0.1,
+                min: 1,
+                max: 120,
+                type: 'number',
+                'aria-labelledby': 'input-slider',
+                }}
+            />
+            </Grid>
+        </Grid>
+      </Box>
+
 
       {/* calculate button */}
       <Button/>
