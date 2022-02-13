@@ -1,0 +1,52 @@
+body{
+    background-color: #1a171e
+    /* #ffffff */
+}
+.btn1{
+    background-color: #ffffff;
+    position: absolute;
+    top: 70%;
+    left: 57%;
+    transform: translate(-50%, -50%);
+    font-style: normal;
+    display: inline;
+    padding:3%;
+    font-size: large;
+}
+.btn2{
+    background-color:  #ffffff;
+    position: absolute;
+    top: 70%;
+    left: 38%;
+    transform: translate(-50%, -50%);
+    font-size: large;
+    font-style: normal;
+    display: inline;
+    padding: 3%;
+}
+.COUNT{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display:inline-block;
+    font-size: 50px;
+    color: #ffffff;
+    text-align: center;
+}
+h2{
+    margin-left: 700px;
+    margin-top: 270px;
+    display: inline-block;
+    font-size: 50px;
+    
+}
+.Navigation{
+    display:grid;
+    font-size:20px;
+    color:white;
+    grid-template-columns: 5rem 10fr 10fr 1fr 5rem;
+
+
+
+}
