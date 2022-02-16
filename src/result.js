@@ -14,7 +14,7 @@ function Result() {
     </button>
   );
 
-  let duration = 6;
+  let duration = 5;
   let amount = 53170;
 
   return (
@@ -37,8 +37,7 @@ function Result() {
       <div>
         <p>Delay of {duration} months in starting your SIP will cause a notional loss of: Rs. {amount} in the final value of your Investment.</p>
       </div>
-      
-            <RecalculateButton/>
+      <RecalculateButton/>
     </>
   );
 }
